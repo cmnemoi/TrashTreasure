@@ -11,10 +11,13 @@ Je vous invite à utiliser [Visual Studio Code](https://code.visualstudio.com/) 
 ## Ubuntu
 
 Le **Java Development Kit (JDK) 11** et **Apache Maven** devraient déjà être installés sur vos PC CY Tech.
+Vous devriez avoir configuré votre compte GitHub suite au projet C.
+
+Il vous suffit alors de récupérer le projet avec la commande : `git clone git@github.com:cmnemoi/TrashTreasure.git`
 
 ## Windows
 
-TODO (Installer Java et Maven)
+TODO (vérifier que ça marche)
 
 # Commandes
 
