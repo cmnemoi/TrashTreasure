@@ -22,7 +22,7 @@ jobs:
         distribution: 'temurin'
     - name: Start and install PostgreSQL database
       run: sudo systemctl start postgresql.service && bash src/main/resources/database/install_database.sh
-    - name: Run app
-      run: mvn spring-boot:run
+    - name: Compile app
+      run: mvn compile
     - name: Run tests
       run: mvn test
