@@ -20,8 +20,8 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Install and start database
-      run: make db-install && make db-start
+    - name: Start and install PostgreSQL database
+      run: sudo systemctl start postgresql.service && src/main/resources/database/install-database.sh
     - name: Compile app
       run: mvn compile
     - name: Run tests
