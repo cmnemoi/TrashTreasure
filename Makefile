@@ -1,6 +1,3 @@
-app-run: db-start
-	mvn spring-boot:run
-
 db-bash:
 	docker exec -it trash-treasure-db psql --username mysql trash_treasure
 
@@ -12,9 +9,6 @@ db-install: db-build db-start
 
 db-start: db-stop
 	docker compose up -d --no-recreate
-
-db-status:
-	mvn liquibase:status
 	
 db-stop:
 	docker compose stop
@@ -22,10 +16,12 @@ db-stop:
 db-watch: db-stop
 	docker compose up --no-recreate
 
-install: install-external-dependencies db-install
+run: db-start
+	mvn spring-boot:run
 
 setup-env-vars:
 	cp .env.dev .env
 
 test: db-start
 	mvn test
+
