@@ -1,6 +1,5 @@
 package com.cytech.trashtreasure.application;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
