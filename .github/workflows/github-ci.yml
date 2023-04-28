@@ -20,10 +20,10 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Where I am and what I have
-      run: pwd && ls -la
+    - name: List resources folder content
+      run: ls -R src/main/resources
     - name: Start and install PostgreSQL database
-      run: sudo systemctl start postgresql.service && src/main/resources/database/install_database.sh
+      run: sudo systemctl start postgresql.service && .∕src/main/resources/database/install_database.sh
     - name: Compile app
       run: mvn compile
     - name: Run tests
