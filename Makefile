@@ -8,7 +8,7 @@ db-build: setup-env-vars
 	docker compose build && docker compose up --no-start
 
 db-install: db-build db-start
-	docker compose exec db bash /docker-entrypoint-initdb.d/install_database.sh
+	docker compose exec db bash docker-entrypoint-initdb.d/install_database.sh
 
 db-start: db-stop
 	docker compose up -d --no-recreate
