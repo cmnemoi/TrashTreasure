@@ -12,7 +12,6 @@
 	<artifactId>trashtreasure</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>trashtreasure</name>
-	<description>A project template for building JavaFX applications with Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<javafx.version>13</javafx.version>
