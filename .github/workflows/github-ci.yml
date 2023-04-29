@@ -20,7 +20,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+    - name: Install and start database
+      run: make db-install && make db-start
     - name: Compile app
       run: mvn compile
     - name: Run tests
-      run: mvn test
+      run: make test

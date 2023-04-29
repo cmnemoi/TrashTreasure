@@ -1,0 +1,15 @@
+version: '3'
+
+services:        
+  db:
+    image: postgres:13.1-alpine
+    container_name: trash-treasure-db
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./src/main/resources/database:/docker-entrypoint-initdb.d
+  
