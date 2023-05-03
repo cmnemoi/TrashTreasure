@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "TrashTreasureApp",
+            "request": "launch",
+            "mainClass": "com.cytech.trashtreasure.TrashTreasureApp",
+            "projectName": "trashtreasure"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBootApp<trashtreasure>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.cytech.trashtreasure.SpringBootApp",
+            "projectName": "trashtreasure",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

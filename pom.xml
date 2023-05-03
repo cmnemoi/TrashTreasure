@@ -29,10 +29,11 @@
       		<groupId>org.springframework.boot</groupId>
       		<artifactId>spring-boot-starter-data-jpa</artifactId>
     	</dependency>
-    	<dependency>
-      		<groupId>org.liquibase</groupId>
-      		<artifactId>liquibase-core</artifactId>
-    	</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>2.1.10.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -68,7 +69,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>com.gluonhq.attach</groupId>
+			<artifactId>display</artifactId>
+			<version>4.0.18</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq</groupId>
+			<artifactId>charm-glisten</artifactId>
+			<version>6.2.3</version>
+		</dependency>
+
+		
+ </dependencies>
 
 	<build>
 		<plugins>
@@ -83,23 +96,17 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
-			 <plugin>  
-                   <groupId>org.liquibase</groupId>  
-                   <artifactId>liquibase-maven-plugin</artifactId>  
-                   <version>4.21.1</version>  
-                   <configuration>  
-                       <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                   </configuration>  
-                   <dependencies>  
-                     <dependency>  
-                         <groupId>postgresql</groupId>  
-                         <artifactId>postgresql</artifactId>  
-                         <version>9.1-901-1.jdbc4</version>
-                     </dependency>  
-                 </dependencies>  
-               </plugin>  
+			</plugin> 
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>charm-glisten</id>
+			<name>charm-glisten Repository</name>
+			<url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
 </project>
