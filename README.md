@@ -20,6 +20,13 @@ Le **Java Development Kit (JDK) 11**, **Docker** et **Apache Maven** devraient d
 
 C'est tout ! 🥳
 
+Bonus : installer [SceneBuilder](https://gluonhq.com/products/scene-builder/) pour créer les interfaces graphiques... graphiquement :
+  
+  ```bash
+  curl https://download2.gluonhq.com/scenebuilder/19.0.0/install/linux/SceneBuilder-19.0.0.deb -o SceneBuilder-19.0.0
+  sudo apt install ./SceneBuilder-19.0.0
+  ```
+
 ## Windows
 
 TODO (vérifier que ça marche)
