@@ -1,34 +1,40 @@
 package com.cytech.trashtreasure.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javafx.fxml.FXML;
-import net.rgielen.fxweaver.core.FxmlView;
+import com.cytech.trashtreasure.service.UserService;
 
-import com.gluonhq.charm.glisten.control.BottomNavigation;
-import com.gluonhq.charm.glisten.control.BottomNavigationButton;
-import com.gluonhq.charm.glisten.control.Icon;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("HomeView.fxml")
 public class HomeController {
 
-    @FXML
-    private BottomNavigation favoriteButton; // Value injected by FXMLLoader
+    @Autowired
+    private UserService userService;
 
     @FXML
-    private BottomNavigationButton bookmarkButton; // Value injected by FXMLLoader
-
+    Button loginButton;
     @FXML
-    private Icon icon; // Value injected by FXMLLoader
+    Button registerButton;
+    @FXML
+    TextField usernameField;
+    @FXML
+    PasswordField passwordField;
 
-
-    public HomeController() {
-        
+    private void register() {
+        this.userService.createUserFromCredentials(usernameField.getText(), passwordField.getText());
     }
 
     @FXML
     public void initialize() {
-        
+        registerButton.setOnAction(e -> {
+            register();
+        });
     }
 }
