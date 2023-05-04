@@ -23,8 +23,9 @@ C'est tout ! 🥳
 Bonus : installer [SceneBuilder](https://gluonhq.com/products/scene-builder/) pour créer les interfaces graphiques... graphiquement :
   
   ```bash
-  curl https://download2.gluonhq.com/scenebuilder/19.0.0/install/linux/SceneBuilder-19.0.0.deb -o SceneBuilder-19.0.0
-  sudo apt install ./SceneBuilder-19.0.0
+  curl https://download2.gluonhq.com/scenebuilder/19.0.0/install/linux/SceneBuilder-19.0.0.deb -o SceneBuilder-19.0.0.deb # on télécharge SceneBuilder
+  sudo apt install ./SceneBuilder-19.0.0.deb # on l'installe
+  rm -f SceneBuilder-19.0.0.deb # on supprime le fichier téléchargé
   ```
 
 ## Windows

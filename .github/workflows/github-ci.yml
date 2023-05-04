@@ -22,7 +22,7 @@ jobs:
         distribution: 'temurin'
     - name: Install and start database
       run: make db-install && make db-start
-    - name: Compile app
-      run: mvn compile
+    - name: Build app
+      run: mvn package
     - name: Run tests
-      run: make test
+      run: mvn test

@@ -21,10 +21,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		<dependency>
-     	 	<groupId>org.springframework.boot</groupId>
-      		<artifactId>spring-boot-starter-data-jdbc</artifactId>
-    	</dependency>
    	 	<dependency>
       		<groupId>org.springframework.boot</groupId>
       		<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -70,17 +66,14 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.gluonhq.attach</groupId>
-			<artifactId>display</artifactId>
-			<version>4.0.18</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.1.6.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>com.gluonhq</groupId>
-			<artifactId>charm-glisten</artifactId>
-			<version>6.2.3</version>
+    		<groupId>com.h2database</groupId>
+    		<artifactId>h2</artifactId>
 		</dependency>
-
-		
  </dependencies>
 
 	<build>
@@ -99,14 +92,5 @@
 			</plugin> 
 		</plugins>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>charm-glisten</id>
-			<name>charm-glisten Repository</name>
-			<url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
 
 </project>
