@@ -34,6 +34,20 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User loginUsingCredentials(String username, String password) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new IllegalArgumentException("User does not exist");
+        }
+        
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("Password is incorrect");
+        }
+        return user;
+    }
+
     private boolean userAlreadyExists(String username) {
         return userRepository.findByUsername(username) != null;
     }

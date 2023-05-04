@@ -18,13 +18,25 @@ public class UserServiceTests {
 
     @Test
     void createUserFromCredentialsTest() {
-        // generate random username and password
+        // generate dynamic username and password
         String username = String.valueOf(System.currentTimeMillis());
         String password = String.valueOf(System.currentTimeMillis());
 
         userService.createUserFromCredentials(username, password);
 
         assertNotNull(userRepository.findByUsername(username), "User should be found in repository");
+
+    }
+
+    @Test
+    void loginUsingCredentialsTest() {
+        // generate dynamic username and password
+        String username = String.valueOf(System.currentTimeMillis());
+        String password = String.valueOf(System.currentTimeMillis());
+
+        userService.createUserFromCredentials(username, password);
+
+        assertNotNull(userService.loginUsingCredentials(username, password), "loginUsingCredentials should return connected user");
 
     }
 }
