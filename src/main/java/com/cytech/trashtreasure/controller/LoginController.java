@@ -42,12 +42,16 @@ public class LoginController {
             login();
             
             // send the stage to the home controller so we can switch to it
-            Stage stage = (Stage) loginButton.getScene().getWindow();
+            Stage stage = getCurrentStage();
             homeController.getController().show(stage);
         });
         registerButton.setOnAction(actionEvent -> {
             register();
         });
+    }
+
+    private Stage getCurrentStage() {
+        return (Stage) loginButton.getScene().getWindow();
     }
 
     private void login() {
