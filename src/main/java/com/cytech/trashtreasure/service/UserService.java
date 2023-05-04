@@ -21,6 +21,9 @@ public class UserService {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("Password cannot be empty");
         }
+        if (userAlreadyExists(username)) {
+            throw new IllegalArgumentException("User already exists");
+        }
         
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         
@@ -28,12 +31,10 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
 
-        System.out.println(user);
+        return userRepository.save(user);
+    }
 
-        if (this.userRepository == null) {
-            throw new IllegalStateException("UserRepository is null");
-        }
-
-        return this.userRepository.save(user);
+    private boolean userAlreadyExists(String username) {
+        return userRepository.findByUsername(username) != null;
     }
 }

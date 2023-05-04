@@ -28,7 +28,7 @@ public class HomeController {
     PasswordField passwordField;
 
     private void register() {
-        this.userService.createUserFromCredentials(usernameField.getText(), passwordField.getText());
+        userService.createUserFromCredentials(usernameField.getText(), passwordField.getText());
     }
 
     @FXML
