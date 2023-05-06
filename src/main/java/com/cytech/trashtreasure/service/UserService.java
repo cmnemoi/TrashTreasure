@@ -16,13 +16,13 @@ public class UserService {
     public User createUserFromCredentials(String username, String password) {
 
         if (username == null || username.isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be empty");
+            throw new IllegalArgumentException("Le nom d'utilisateur ne peut pas être vide");
         }
         if (password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be empty");
+            throw new IllegalArgumentException("Le mot de passe ne peut pas être vide");
         }
         if (userAlreadyExists(username)) {
-            throw new IllegalArgumentException("User already exists");
+            throw new IllegalArgumentException("L'utilisateur " + username + " existe déjà");
         }
         
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -37,13 +37,13 @@ public class UserService {
     public User loginUsingCredentials(String username, String password) {
         User user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new IllegalArgumentException("User does not exist");
+            throw new IllegalArgumentException("L'utilisateur " + username + " n'existe pas"); 
         }
         
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new IllegalArgumentException("Password is incorrect");
+            throw new IllegalArgumentException("Le mot de passe est incorrect");
         }
         return user;
     }

@@ -40,10 +40,6 @@ public class LoginController {
     public void initialize() {        
         loginButton.setOnAction(actionEvent -> {
             login();
-            
-            // send the stage to the home controller so we can switch to it
-            Stage stage = getCurrentStage();
-            homeController.getController().show(stage);
         });
         registerButton.setOnAction(actionEvent -> {
             register();
@@ -58,6 +54,10 @@ public class LoginController {
         try {
             userService.loginUsingCredentials(usernameField.getText(), passwordField.getText());
             showSuccessMessage("Connexion réussie", "Vous êtes maintenant connecté");
+            
+            // send the stage to the home controller so we can switch windows
+            Stage stage = getCurrentStage();
+            homeController.getController().show(stage);
         } catch (IllegalArgumentException error) {
             showErrorMessage("Erreur lors de la connexion", error.getMessage());
         }
