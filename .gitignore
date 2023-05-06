@@ -26,3 +26,9 @@ replay_pid*
 
 # env
 .env
+
+# IntelliJ
+.idea/
+
+# H2 file
+*.db
