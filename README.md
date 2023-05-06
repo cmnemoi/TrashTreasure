@@ -69,9 +69,12 @@ choco install git maven -y
 * Lancer l'application : `make run`
 * Lancer les tests : `make test`
 * Accéder à la base de données : http://localhost:8080/h2-console ou `make see-db` sous Ubuntu
- * JDBC URL : `jdbc:h2:./database/trash-treasure`
- * Username : `mysql`
- * Password : `password`
+ ```
+ Identifiants :
+ JDBC URL: jdbc:h2:./database/trash-treasure
+ Username: mysql
+ Password: password
+```
 
 # Licence
 
