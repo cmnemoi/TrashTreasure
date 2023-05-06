@@ -8,17 +8,14 @@ Auteurs : Achraf Assakan, Charles-Meldhine Madi Mnemoi, Dean Bah, Marwa Tourabi
 
 Je vous invite à utiliser [Visual Studio Code](https://code.visualstudio.com/) comme éditeur de code et à installer les extensions :
   -  [**Java Extension Pack**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) et [**Spring Boot Extension Pack**](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack) pour de l'aide à la programmation Java (génération de classes, débogage, etc.)
-  - [**SQLTools**](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools) et [**SQLTools PostgresSQL/CockroachDB Driver**](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-pg) pour visualiser la base de données
   - [**GitHub Copilot**](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 
 ## Ubuntu
 
 Le **Java Development Kit (JDK) 11**, **Docker** et **Apache Maven** devraient déjà être installés sur vos PC CY Tech et vous devriez avoir configuré votre compte GitHub suite au projet C.
 
-1) Récupérer le code source du projet : `git clone git@github.com:cmnemoi/TrashTreasure.git; cd TrashTreasure`
-2) Installer la base de données : `make db-install`
-
-C'est tout ! 🥳
+Il vous suffit simplement de récupérer le code source du projet : `git clone git@github.com:cmnemoi/TrashTreasure.git; cd TrashTreasure`
+Et si tout va bien vous devriez pouvoir lancer l'application avec `make run`.
 
 Bonus : installer [SceneBuilder](https://gluonhq.com/products/scene-builder/) pour créer les interfaces graphiques... graphiquement :
   
@@ -35,8 +32,8 @@ TODO (vérifier que ça marche)
 # Commandes
 
 * Lancer l'application : `make run`
-* Démarrer la base de données : `make db-start`
 * Lancer les tests : `make test`
+* Accéder à la base de données : http://localhost:8080/h2-console
 
 # Licence
 
