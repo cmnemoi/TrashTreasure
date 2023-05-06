@@ -22,5 +22,3 @@ jobs:
         distribution: 'temurin'
     - name: Build app
       run: mvn package
-    - name: Run tests
-      run: mvn test
