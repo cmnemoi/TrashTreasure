@@ -3,6 +3,7 @@ package com.cytech.trashtreasure.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cytech.trashtreasure.entity.User;
 import com.cytech.trashtreasure.service.UserService;
 
 import javafx.fxml.FXML;
@@ -52,12 +53,16 @@ public class LoginController {
 
     private void login() {
         try {
-            userService.loginUsingCredentials(usernameField.getText(), passwordField.getText());
+            User connectedUser = userService.loginUsingCredentials(usernameField.getText(), passwordField.getText());
             showSuccessMessage("Connexion réussie", "Vous êtes maintenant connecté");
-            
+
+            // give the home controller the user so it can retrieve its data
+            homeController.getController().setConnectedUser(connectedUser);
+
             // send the stage to the home controller so we can switch windows
             Stage stage = getCurrentStage();
             homeController.getController().show(stage);
+
         } catch (IllegalArgumentException error) {
             showErrorMessage("Erreur lors de la connexion", error.getMessage());
         }
