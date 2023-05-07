@@ -3401,7 +3401,6 @@
 								"reference": {
 									"$ref": "AAAAAAGH7SFvDk7NF94="
 								},
-								"aggregation": "composite",
 								"multiplicity": "1"
 							}
 						},
@@ -3833,7 +3832,6 @@
 								"reference": {
 									"$ref": "AAAAAAGH84HXLbjB6fQ="
 								},
-								"aggregation": "composite",
 								"multiplicity": "1"
 							}
 						}
