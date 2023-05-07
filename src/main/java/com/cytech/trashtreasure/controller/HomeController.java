@@ -3,25 +3,24 @@ package com.cytech.trashtreasure.controller;
 import org.springframework.stereotype.Component;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("HomeView.fxml")
-public class HomeController {
+public class HomeController extends AbstractController {
     
-
     @FXML
-    private VBox root;
-
+    private Label fidelityPointsLabel;
     @FXML
-    public void initialize() {
+    private Label usernameLabel;
+    
+    protected void updateScene() {
+        usernameLabel.setText(connectedUser.getUsername());
+        fidelityPointsLabel.setText(
+            "Points : " +
+            connectedUser.getFidelityPoints().toString()
+        );
     }
 
-    public void show(Stage stage) {
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
 }
