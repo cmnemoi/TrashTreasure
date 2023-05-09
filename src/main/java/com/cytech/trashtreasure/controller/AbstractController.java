@@ -23,8 +23,7 @@ abstract public class AbstractController {
     protected User connectedUser;
 
     @FXML
-    public void initialize() {
-    }
+    abstract public void initialize();
 
     public void setConnectedUser(User connectedUser) {
         this.connectedUser = connectedUser;
@@ -34,6 +33,10 @@ abstract public class AbstractController {
         stage.setScene(new Scene(root));
         updateScene();
         stage.show();
+    }
+
+    protected Stage getCurrentStage() {
+        return (Stage) root.getScene().getWindow();
     }
 
     protected void updateScene() {
