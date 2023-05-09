@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -26,6 +28,8 @@ public class TrashController extends AbstractController {
     public ChoiceBox<String> binChoiceBox;
     @FXML
     public ChoiceBox<String> trashChoiceBox;
+    @FXML
+    public Spinner<Integer> trashQuantitySpinner;
 
     @Autowired
     private TrashService trashService;
@@ -41,6 +45,9 @@ public class TrashController extends AbstractController {
         backButton.setOnAction(actionEvent -> {
             back();
         });
+        trashQuantitySpinner.setValueFactory(
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1)
+        );
         trashButton.setOnAction(actionEvent -> {
             trash();
             updateScene();
@@ -49,13 +56,14 @@ public class TrashController extends AbstractController {
 
     protected void updateScene() {
         super.updateScene();
-        trashChoiceBox.getItems().clear();
-        trashChoiceBox.getItems().addAll(trashService.getAllTrashNames());
-        trashChoiceBox.getSelectionModel().selectFirst();
 
         binChoiceBox.getItems().clear();
         binChoiceBox.getItems().addAll(trashService.getAllBinNames());
         binChoiceBox.getSelectionModel().selectFirst();
+
+        trashChoiceBox.getItems().clear();
+        trashChoiceBox.getItems().addAll(trashService.getAllTrashNames());
+        trashChoiceBox.getSelectionModel().selectFirst();
     }
 
     private void back() {
@@ -73,7 +81,7 @@ public class TrashController extends AbstractController {
 
     private void trash() {
         String selectedTrash = trashChoiceBox.getSelectionModel().getSelectedItem();
-        Integer selectedQuantity = 1;
+        Integer selectedQuantity = trashQuantitySpinner.getValue();
         String selectedBin = binChoiceBox.getSelectionModel().getSelectedItem();
 
         Trash depositedTrash = trashService.putTrashIntoBin(
