@@ -4,8 +4,6 @@ import org.springframework.stereotype.Component;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
-import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
@@ -18,12 +16,6 @@ public class HomeController extends AbstractController {
     public Button depositButton;
     @FXML
     public Button watchDepositButton;
-
-    private final FxControllerAndView<DepositController, VBox> depositController;
-
-    public HomeController(FxControllerAndView<DepositController, VBox> depositController) {
-        this.depositController = depositController;
-    }
 
     @FXML
     public void initialize() {
@@ -43,8 +35,7 @@ public class HomeController extends AbstractController {
     }
 
     private void goToDepositView() {
-        depositController.getController().setConnectedUser(connectedUser);
-        depositController.getController().show(getCurrentStage());
+        // TODO
     }
 
     private void goToWatchDepositsView() {
