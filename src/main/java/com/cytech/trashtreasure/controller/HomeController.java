@@ -19,6 +19,12 @@ public class HomeController extends AbstractController {
     @FXML
     public Button watchDepositButton;
 
+    private final FxControllerAndView<TrashController, VBox> trashController;
+
+    public HomeController(FxControllerAndView<TrashController, VBox> trashController) {
+        this.trashController = trashController;
+    }
+
     @FXML
     public void initialize() {
         convertPointsButton.setOnAction(actionEvent -> {
@@ -37,7 +43,8 @@ public class HomeController extends AbstractController {
     }
 
     private void goToDepositView() {
-        // TODO
+        trashController.getController().setConnectedUser(connectedUser);
+        trashController.getController().show(getCurrentScene());
     }
 
     private void goToWatchDepositsView() {
