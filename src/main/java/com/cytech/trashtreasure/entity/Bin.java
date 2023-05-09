@@ -26,7 +26,7 @@ public class Bin {
     @Id
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String color;
 
     @OneToMany(targetEntity = Trash.class, mappedBy = "bin")
