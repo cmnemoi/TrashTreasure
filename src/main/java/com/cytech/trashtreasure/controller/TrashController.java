@@ -1,19 +1,17 @@
 package com.cytech.trashtreasure.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cytech.trashtreasure.entity.Bin;
-import com.cytech.trashtreasure.entity.TrashConfig;
-import com.cytech.trashtreasure.repository.BinRepository;
-import com.cytech.trashtreasure.repository.TrashConfigRepository;
+import com.cytech.trashtreasure.entity.Trash;
+import com.cytech.trashtreasure.service.TrashService;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -30,11 +28,11 @@ public class TrashController extends AbstractController {
     public ChoiceBox<String> binChoiceBox;
     @FXML
     public ChoiceBox<String> trashChoiceBox;
-    
+    @FXML
+    public Spinner<Integer> trashQuantitySpinner;
+
     @Autowired
-    private BinRepository binRepository;
-    @Autowired
-    private TrashConfigRepository trashConfigRepository;
+    private TrashService trashService;
 
     private final FxControllerAndView<HomeController, VBox> homeController;
 
@@ -47,18 +45,25 @@ public class TrashController extends AbstractController {
         backButton.setOnAction(actionEvent -> {
             back();
         });
+        trashQuantitySpinner.setValueFactory(
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1)
+        );
         trashButton.setOnAction(actionEvent -> {
             trash();
+            updateScene();
         });
     }
 
     protected void updateScene() {
         super.updateScene();
-        trashChoiceBox.getItems().addAll(getTrashNames());
-        trashChoiceBox.getSelectionModel().selectFirst();
 
-        binChoiceBox.getItems().addAll(getBinColors());
+        binChoiceBox.getItems().clear();
+        binChoiceBox.getItems().addAll(trashService.getAllBinNames());
         binChoiceBox.getSelectionModel().selectFirst();
+
+        trashChoiceBox.getItems().clear();
+        trashChoiceBox.getItems().addAll(trashService.getAllTrashNames());
+        trashChoiceBox.getSelectionModel().selectFirst();
     }
 
     private void back() {
@@ -66,26 +71,32 @@ public class TrashController extends AbstractController {
         homeController.getController().show(getCurrentScene());
     }
 
-    private List<String> getBinColors() {
-        List<String> binColors = new ArrayList<String>();
-        List<Bin> bins = binRepository.findAll();
-        for (Bin bin : bins) {
-            binColors.add(bin.getColor());
-        }
-        return binColors;
-    }
-
-    private List<String> getTrashNames() {
-        List<String> trashNames = new ArrayList<String>();
-        List<TrashConfig> trashConfigs = trashConfigRepository.findAll();
-        for (TrashConfig trashConfig : trashConfigs) {
-            trashNames.add(trashConfig.getName());
-        }
-        return trashNames;
+    private void showSuccessMessage(String successHeader, String successContent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Info");
+        alert.setHeaderText(successHeader);
+        alert.setContentText(successContent);
+        alert.showAndWait();
     }
 
     private void trash() {
-        // TODO
+        String selectedTrash = trashChoiceBox.getSelectionModel().getSelectedItem();
+        Integer selectedQuantity = trashQuantitySpinner.getValue();
+        String selectedBin = binChoiceBox.getSelectionModel().getSelectedItem();
+
+        Trash depositedTrash = trashService.putTrashIntoBin(
+            selectedTrash,
+            selectedQuantity,
+            selectedBin,
+            connectedUser
+        );
+
+        showSuccessMessage(
+            "Dépôt effectué",
+            "Votre dépôt a bien été effectué. Vous avez gagné " + depositedTrash.getEarnedPoints() + " points !"
+        );
     }
+
+    
 
 }

@@ -39,4 +39,8 @@ public class User {
     public String toString() {
         return "User [id=" + id + ", username=" + username + "]";
     }
+
+    public void addFidelityPoints(Integer fidelityPoints) {
+        this.fidelityPoints += fidelityPoints;
+    }
 }

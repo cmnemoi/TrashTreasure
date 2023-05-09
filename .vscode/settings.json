@@ -11,5 +11,6 @@
             "database": "trash_treasure",
             "username": "mysql"
         }
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "disabled"
 }
