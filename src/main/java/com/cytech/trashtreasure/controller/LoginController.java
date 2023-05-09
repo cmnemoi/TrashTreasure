@@ -7,6 +7,7 @@ import com.cytech.trashtreasure.entity.User;
 import com.cytech.trashtreasure.service.UserService;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -47,8 +48,8 @@ public class LoginController {
         });
     }
 
-    private Stage getCurrentStage() {
-        return (Stage) loginButton.getScene().getWindow();
+    private Scene getCurrentScene() {
+        return loginButton.getScene();
     }
 
     private void login() {
@@ -59,9 +60,8 @@ public class LoginController {
             // give the home controller the user so it can retrieve its data
             homeController.getController().setConnectedUser(connectedUser);
 
-            // send the stage to the home controller so we can switch windows
-            Stage stage = getCurrentStage();
-            homeController.getController().show(stage);
+            // send the scene to the home controller so we can switch windows
+            homeController.getController().show(getCurrentScene());
 
         } catch (IllegalArgumentException error) {
             showErrorMessage("Erreur lors de la connexion", error.getMessage());

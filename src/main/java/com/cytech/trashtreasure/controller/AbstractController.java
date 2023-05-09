@@ -29,14 +29,13 @@ abstract public class AbstractController {
         this.connectedUser = connectedUser;
     }
 
-    public void show(Stage stage) {
-        stage.setScene(new Scene(root));
+    public void show(Scene scene) {
+        scene.setRoot(root);
         updateScene();
-        stage.show();
     }
 
-    protected Stage getCurrentStage() {
-        return (Stage) root.getScene().getWindow();
+    protected Scene getCurrentScene() {
+        return  root.getScene();
     }
 
     protected void updateScene() {
