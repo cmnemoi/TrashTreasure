@@ -42,6 +42,9 @@ public class Trash {
     @ManyToOne(targetEntity = User.class)
     private User depositor;
 
+    @ManyToOne(targetEntity = Bin.class)
+    private Bin bin;
+
     public String getName() {
         return trashConfig.getName();
     }
