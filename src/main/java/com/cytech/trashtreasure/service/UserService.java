@@ -1,7 +1,6 @@
 package com.cytech.trashtreasure.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cytech.trashtreasure.entity.User;
@@ -24,12 +23,10 @@ public class UserService {
         if (userAlreadyExists(username)) {
             throw new IllegalArgumentException("L'utilisateur " + username + " existe déjà");
         }
-        
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        
+                
         User user = new User();
         user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
 
         return userRepository.save(user);
     }
@@ -39,10 +36,8 @@ public class UserService {
         if (user == null) {
             throw new IllegalArgumentException("L'utilisateur " + username + " n'existe pas"); 
         }
-        
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+                
+        if (!user.getPassword().equals(password)) {
             throw new IllegalArgumentException("Le mot de passe est incorrect");
         }
         return user;
