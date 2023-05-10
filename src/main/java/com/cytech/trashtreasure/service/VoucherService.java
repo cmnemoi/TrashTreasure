@@ -33,6 +33,7 @@ public class VoucherService {
         voucherRepository.save(voucher);
 
         user.removeFidelityPoints(voucher.getFidelityPointsCost());
+        user.addVoucher(voucher);
         userRepository.save(user);
 
         return voucher;
