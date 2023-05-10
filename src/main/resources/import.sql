@@ -25,3 +25,14 @@ INSERT INTO bin (color) VALUES ('Verte');
 INSERT INTO bin (color) VALUES ('Jaune');
 INSERT INTO bin (color) VALUES ('Bleue');
 INSERT INTO bin (color) VALUES ('Classique');
+
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('percentage', 10, 500, 'Auchan');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('flat', 5, 30, 'Carrefour');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('percentage', 15, 750, 'Boulanger');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('flat', 7, 40, 'Leclerc');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('percentage', 20, 1000, 'Intermarché');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('flat', 3, 20, 'Fnac');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('percentage', 12, 600, 'Darty');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('flat', 8, 45, 'Super U');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('percentage', 18, 900, 'Monoprix');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('flat', 4, 25, 'Cora');
