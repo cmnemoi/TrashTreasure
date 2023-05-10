@@ -13,27 +13,30 @@ import net.rgielen.fxweaver.core.FxmlView;
 public class HomeController extends AbstractController {
     
     @FXML
-    public Button convertPointsButton;
+    public Button claimVoucherButton;
     @FXML
     public Button depositButton;
     @FXML
     public Button watchDepositButton;
 
+    private final FxControllerAndView<ClaimVoucherController, VBox> claimVoucherController;
     private final FxControllerAndView<DepositsController, VBox> depositsController;
     private final FxControllerAndView<TrashController, VBox> trashController;
 
     public HomeController(
+        FxControllerAndView<ClaimVoucherController, VBox> claimVoucherController,
         FxControllerAndView<DepositsController, VBox> depositsController,
         FxControllerAndView<TrashController, VBox> trashController
     ) {
+        this.claimVoucherController = claimVoucherController;
         this.depositsController = depositsController;
         this.trashController = trashController;
     }
 
     @FXML
     public void initialize() {
-        convertPointsButton.setOnAction(actionEvent -> {
-            goToConvertPointsView();
+        claimVoucherButton.setOnAction(actionEvent -> {
+            goToClaimVoucherView();
         });
         depositButton.setOnAction(actionEvent -> {
             goToDepositView();
@@ -43,8 +46,9 @@ public class HomeController extends AbstractController {
         });
     }
 
-    private void goToConvertPointsView() {
-        // TODO
+    private void goToClaimVoucherView() {
+        claimVoucherController.getController().setConnectedUser(connectedUser);
+        claimVoucherController.getController().show(getCurrentScene());
     }
 
     private void goToDepositView() {
