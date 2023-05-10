@@ -3,10 +3,13 @@ package com.cytech.trashtreasure.service;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.cytech.trashtreasure.entity.Trash;
 import com.cytech.trashtreasure.entity.User;
 
 @SpringBootTest
@@ -69,6 +72,33 @@ public class TrashServiceTests {
         Integer earnedPoints = trashService.putTrashIntoBin(trashName, trashQuantity, binColor, user).getEarnedPoints();
 
         assertEquals(expectedEarnedPoints, earnedPoints);
+    }
+
+    @Test
+    void getUserDepositsTest() {
+        // create user with dynamic username and password
+        User user1 = userService.createUserFromCredentials(
+            String.valueOf(System.currentTimeMillis()), 
+            String.valueOf(System.currentTimeMillis())
+        );
+        User user2 = userService.createUserFromCredentials(
+            String.valueOf(System.currentTimeMillis()), 
+            String.valueOf(System.currentTimeMillis())
+        );
+
+        String trashName = "Bouteille en verre";
+        Integer trashQuantity = 1;
+        String binColor = "Verte";
+
+        Trash user1DepositedTrash = trashService.putTrashIntoBin(trashName, trashQuantity, binColor, user1);
+        trashService.putTrashIntoBin(trashName, trashQuantity, binColor, user2);
+
+        ArrayList<Trash> user1Deposits = trashService.getUserDeposits(user1);
+        ArrayList<Trash> expectedDeposits = new ArrayList<Trash>();
+        expectedDeposits.add(user1DepositedTrash);
+
+        assertEquals(user1Deposits.get(0).getId(), expectedDeposits.get(0).getId());
+        assertEquals(user1Deposits.size(), expectedDeposits.size());
     }
 
 }
