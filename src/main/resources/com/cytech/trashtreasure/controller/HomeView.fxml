@@ -91,7 +91,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="450.0">
                      <children>
-                        <Button fx:id="convertPointsButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Convertir mes points en bons d'achat" />
+                        <Button fx:id="claimVoucherButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Convertir mes points en bons d'achat" />
                      </children>
                   </HBox>
                </children>
