@@ -63,6 +63,7 @@ public class ClaimVoucherController extends AbstractController {
 
         voucherService.addVoucherToUser(selectedVoucher, connectedUser);
         showSuccessMessage("Succès", "Bon d'achat ajouté à votre compte");
+        updateScene();
     }
 
     private void showErrorMessage(String errorHeader, String errorContent) {
