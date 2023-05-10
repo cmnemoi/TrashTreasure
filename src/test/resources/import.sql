@@ -9,3 +9,6 @@ INSERT INTO bin (color) VALUES ('Verte');
 INSERT INTO bin (color) VALUES ('Jaune');
 INSERT INTO bin (color) VALUES ('Bleue');
 INSERT INTO bin (color) VALUES ('Classique');
+
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('percentage', 10, 500, 'Auchan');
+INSERT INTO voucher_config (discount_type, discount_value, fidelity_points_cost, shop) VALUES ('flat', 5, 30, 'Carrefour');
