@@ -1,5 +1,6 @@
 package com.cytech.trashtreasure.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -34,6 +35,10 @@ public class TrashService {
 
     public String[] getAllTrashNames() {
         return trashConfigRepository.findAll().stream().map(trash -> trash.getName()).toArray(String[]::new);
+    }
+
+    public ArrayList<Trash> getUserDeposits(User user) {
+        return trashRepository.findByDepositor(user);
     }
 
     public Trash putTrashIntoBin(
@@ -81,6 +86,7 @@ public class TrashService {
         HashMap<String, String> trashBinMap = new HashMap<>();
         trashBinMap.put("Organique", "Classique");
         trashBinMap.put("Plastique", "Jaune");
+        trashBinMap.put("Metallique", "Jaune");
         trashBinMap.put("Verre", "Verte");
         trashBinMap.put("Papier", "Bleu");
 
