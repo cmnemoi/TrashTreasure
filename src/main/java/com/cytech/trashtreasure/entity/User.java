@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ public class User {
     @Column(nullable = false)
     private Integer fidelityPoints = 0;
 
-    @OneToMany(targetEntity = Voucher.class, mappedBy = "user")
+    @OneToMany(targetEntity = Voucher.class, mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Voucher> vouchers = new HashSet<Voucher>();
 
     @Override
