@@ -18,19 +18,24 @@ public class HomeController extends AbstractController {
     public Button depositButton;
     @FXML
     public Button watchDepositButton;
+    @FXML
+    public Button watchVouchersButton;
 
     private final FxControllerAndView<ClaimVoucherController, VBox> claimVoucherController;
     private final FxControllerAndView<DepositsController, VBox> depositsController;
     private final FxControllerAndView<TrashController, VBox> trashController;
+    private final FxControllerAndView<VouchersController, VBox> vouchersController;
 
     public HomeController(
         FxControllerAndView<ClaimVoucherController, VBox> claimVoucherController,
         FxControllerAndView<DepositsController, VBox> depositsController,
-        FxControllerAndView<TrashController, VBox> trashController
+        FxControllerAndView<TrashController, VBox> trashController,
+        FxControllerAndView<VouchersController, VBox> vouchersController
     ) {
         this.claimVoucherController = claimVoucherController;
         this.depositsController = depositsController;
         this.trashController = trashController;
+        this.vouchersController = vouchersController;
     }
 
     @FXML
@@ -43,6 +48,9 @@ public class HomeController extends AbstractController {
         });
         watchDepositButton.setOnAction(actionEvent -> {
             goToWatchDepositsView();
+        });
+        watchVouchersButton.setOnAction(actionEvent -> {
+            goToWatchVouchersView();
         });
     }
 
@@ -59,5 +67,10 @@ public class HomeController extends AbstractController {
     private void goToWatchDepositsView() {
         depositsController.getController().setConnectedUser(connectedUser);
         depositsController.getController().show(getCurrentScene());
+    }
+
+    private void goToWatchVouchersView() {
+        vouchersController.getController().setConnectedUser(connectedUser);
+        vouchersController.getController().show(getCurrentScene());
     }
 }
