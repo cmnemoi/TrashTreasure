@@ -89,6 +89,11 @@
                         <Button fx:id="watchDepositButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Voir mes dépôts" />
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="watchVouchersButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Voir mes bons d'achat" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="450.0">
                      <children>
                         <Button fx:id="claimVoucherButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Convertir mes points en bons d'achat" />
