@@ -26,6 +26,10 @@ public class VoucherService {
         return voucherConfigRepository.findAll();
     }
 
+    public Integer getNumberOfClaimedVouchers() {
+        return voucherRepository.findAll().size();
+    }
+
     public Voucher addVoucherToUser(VoucherConfig voucherConfig, User user) {
         Voucher voucher = createVoucherFromConfig(voucherConfig);
         voucher.setUser(user);

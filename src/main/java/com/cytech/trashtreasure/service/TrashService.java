@@ -3,6 +3,7 @@ package com.cytech.trashtreasure.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import com.cytech.trashtreasure.repository.BinRepository;
 import com.cytech.trashtreasure.repository.TrashConfigRepository;
 import com.cytech.trashtreasure.repository.TrashRepository;
 import com.cytech.trashtreasure.repository.UserRepository;
+
+import javafx.util.Pair;
 
 @Service
 public class TrashService {
@@ -35,6 +38,35 @@ public class TrashService {
 
     public String[] getAllTrashNames() {
         return trashConfigRepository.findAll().stream().map(trash -> trash.getName()).toArray(String[]::new);
+    }
+
+    public String[] getAllTrashTypes() {
+        return trashConfigRepository.findAll().stream().map(trash -> trash.getType()).toArray(String[]::new);
+    }
+
+    /**
+     * Returns the number of trash that have been correctly classified 
+     * @return a pair of integers, the first one is the number of correctly classified trash, the second one is the proportion of correctly classified trash
+     */
+    public Pair<Integer, Integer> getCorrectlyClassifiedTrashAmount() {
+        List<Trash> trashList = trashRepository.findAll();
+        Integer correctlyClassifiedTrashAmount = 0;
+
+        for (Trash trash : trashList) {
+            if (isTrashInTheRightBin(trash, trash.getBin())) {
+                correctlyClassifiedTrashAmount++;
+            }
+        }
+
+        return new Pair<Integer,Integer>(correctlyClassifiedTrashAmount, correctlyClassifiedTrashAmount * 100 / trashList.size());
+    }
+
+    public Integer getNumberOfTrash() {
+        return trashRepository.findAll().size();
+    }
+
+    public Integer getNumberOfTrashByType(String trashType) {
+        return trashRepository.findByType(trashType).size();
     }
 
     public ArrayList<Trash> getUserDeposits(User user) {
@@ -86,9 +118,9 @@ public class TrashService {
         HashMap<String, String> trashBinMap = new HashMap<>();
         trashBinMap.put("Organique", "Classique");
         trashBinMap.put("Plastique", "Jaune");
-        trashBinMap.put("Metallique", "Jaune");
+        trashBinMap.put("Métallique", "Jaune");
         trashBinMap.put("Verre", "Verte");
-        trashBinMap.put("Papier", "Bleu");
+        trashBinMap.put("Papier", "Bleue");
 
         return trashBinMap.get(trash.getType()).equals(bin.getColor());
     }

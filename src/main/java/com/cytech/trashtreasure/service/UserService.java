@@ -31,6 +31,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public Integer getNumberOfUsers() {
+        return userRepository.findAll().size();
+    }
+
     public User loginUsingCredentials(String username, String password) {
         User user = userRepository.findByUsername(username);
         if (user == null) {
