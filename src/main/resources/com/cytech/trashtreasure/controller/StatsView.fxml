@@ -109,6 +109,14 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </BarChart>
+                        <BarChart fx:id="trashBinRepartitionBarChart" prefHeight="245.0" prefWidth="431.0" title="Répartition des déchets en fonction de la poubelle">
+                         <xAxis>
+                           <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                           <NumberAxis side="LEFT" />
+                           </yAxis>
+                           </BarChart>
                      </children>
                      <padding>
                         <Insets left="10.0" top="10.0" />

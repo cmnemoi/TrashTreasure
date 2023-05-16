@@ -15,6 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
+import com.cytech.trashtreasure.entity.Trash;
+import java.util.HashMap;
+import java.util.List;
+
 
 @Component
 @FxmlView("StatsView.fxml")
@@ -54,6 +58,7 @@ public class StatsController extends AbstractController {
         super.updateScene();
         updateKpis();
         updateTrashTypeRepartitionBarChart();
+        updateTrashBinRepartitionBarChart();
     }
 
     private void back() {
@@ -82,5 +87,43 @@ public class StatsController extends AbstractController {
 
         trashTypeRepartitionBarChart.getData().add(series);
     }
+
+    @FXML
+public BarChart<String, Integer> trashBinRepartitionBarChart;
+
+private void updateTrashBinRepartitionBarChart() {
+    trashBinRepartitionBarChart.getData().clear();
+
+    List<Trash> allTrash = trashService.getAllTrash();  
+
+    HashMap<String, HashMap<String, Integer>> binTrashCount = new HashMap<>();
+    for (String binColor : trashService.getAllBinNames()) {
+        binTrashCount.put(binColor, new HashMap<>());
+        for (String trashType : trashService.getAllTrashTypes()) {
+            binTrashCount.get(binColor).put(trashType, 0);
+        }
+    }
+
+    for (Trash trash : allTrash) {
+        String binColor = trash.getBin().getColor();
+        String trashType = trash.getType();
+        if (trashService.isTrashInItsRightBin(trash)) {
+            binTrashCount.get(binColor).put(trashType, binTrashCount.get(binColor).get(trashType) + 1);
+        }
+        
+    }
+
+    for (String binColor : binTrashCount.keySet()) {
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        series.setName(binColor);
+        for (String trashType : binTrashCount.get(binColor).keySet()) {
+            if (binTrashCount.get(binColor).get(trashType) > 0) {
+                series.getData().add(new XYChart.Data<>(trashType, binTrashCount.get(binColor).get(trashType)));
+            }
+        }
+        trashBinRepartitionBarChart.getData().add(series);
+    }
+}
+
     
 }
