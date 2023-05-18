@@ -31,6 +31,11 @@ public class TrashService {
     private UserRepository userRepository;
 
     private static final float PENALTY_FACTOR = 0.2f;
+    
+    public List<Trash> getAllTrash() {
+        return trashRepository.findAll();
+    }
+    
 
     public String[] getAllBinNames() {
         return binRepository.findAll().stream().map(bin -> bin.getColor()).toArray(String[]::new);
@@ -125,5 +130,8 @@ public class TrashService {
         return trashBinMap.get(trash.getType()).equals(bin.getColor());
     }
 
+    public boolean isTrashInItsRightBin(Trash trash) {
+        return isTrashInTheRightBin(trash, trash.getBin());
+    }
     
 }
