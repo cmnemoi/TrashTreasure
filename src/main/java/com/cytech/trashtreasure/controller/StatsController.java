@@ -96,34 +96,25 @@ private void updateTrashBinRepartitionBarChart() {
 
     List<Trash> allTrash = trashService.getAllTrash();  
 
-    HashMap<String, HashMap<String, Integer>> binTrashCount = new HashMap<>();
+    HashMap<String, Integer> binTrashCount = new HashMap<>();
     for (String binColor : trashService.getAllBinNames()) {
-        binTrashCount.put(binColor, new HashMap<>());
-        for (String trashType : trashService.getAllTrashTypes()) {
-            binTrashCount.get(binColor).put(trashType, 0);
-        }
+        binTrashCount.put(binColor, 0);
     }
 
     for (Trash trash : allTrash) {
         String binColor = trash.getBin().getColor();
-        String trashType = trash.getType();
-        if (trashService.isTrashInItsRightBin(trash)) {
-            binTrashCount.get(binColor).put(trashType, binTrashCount.get(binColor).get(trashType) + 1);
-        }
-        
+        binTrashCount.put(binColor, binTrashCount.get(binColor) + 1);
     }
 
+    XYChart.Series<String, Integer> series = new XYChart.Series<>();
+    series.setName("Poubelles");
     for (String binColor : binTrashCount.keySet()) {
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        series.setName(binColor);
-        for (String trashType : binTrashCount.get(binColor).keySet()) {
-            if (binTrashCount.get(binColor).get(trashType) > 0) {
-                series.getData().add(new XYChart.Data<>(trashType, binTrashCount.get(binColor).get(trashType)));
-            }
-        }
-        trashBinRepartitionBarChart.getData().add(series);
+        series.getData().add(new XYChart.Data<>(binColor, binTrashCount.get(binColor)));
     }
+    trashBinRepartitionBarChart.getData().add(series);
 }
+
+
 
     
 }
