@@ -101,7 +101,7 @@
                               <Label text="Nombre de bons d'achat distribués :" />
                            </graphic>
                         </Label>
-                        <BarChart fx:id="trashTypeRepartitionBarChart" prefHeight="245.0" prefWidth="431.0" title="Répartition des déchets en fonction du type">
+                        <BarChart fx:id="trashTypeRepartitionBarChart" prefHeight="245.0" prefWidth="431.0" minWidth="400" title="Répartition des déchets en fonction du type">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -109,7 +109,7 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <BarChart fx:id="trashBinRepartitionBarChart" prefHeight="245.0" prefWidth="431.0" title="Répartition des déchets en fonction de la poubelle">
+                        <BarChart fx:id="trashBinRepartitionBarChart" prefHeight="245.0" prefWidth="431.0" minWidth="400" title="Répartition des déchets en fonction de la poubelle">
                          <xAxis>
                            <CategoryAxis side="BOTTOM" />
                            </xAxis>
