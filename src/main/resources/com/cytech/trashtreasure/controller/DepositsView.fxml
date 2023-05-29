@@ -78,7 +78,6 @@
       </TableView>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="trashButton" mnemonicParsing="false" text="Jeter" />
             <Button fx:id="backButton" mnemonicParsing="false" text="Retour" />
         </buttons>
          <opaqueInsets>
